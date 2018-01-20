@@ -37,8 +37,8 @@ echo "ANACONDA DONE"
 echo "INSTALLING SBT / ENSIME PLUGIN"
 curl -s https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 dnf -q install sbt
-mkdir -p ~/.sbt/1.0/plugins
-echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.1.0")' >> ~/.sbt/1.0/plugins/plugins.sbt
+mkdir -p /home/vagrant/.sbt/1.0/plugins
+echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.1.0")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
 echo "SBT DONE"
 
 #Maven
@@ -64,22 +64,22 @@ echo "AMMONITE DONE"
 
 #oh-my-zsh
 echo "INSTALLING OH MY ZSH"
-dnf -q install util-linux-user -y
 dnf -q install zsh -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-mkdir -p ~/.oh-my-zsh/plugins
-chsh -s /bin/zsh
+mkdir -p /home/vagrant/.oh-my-zsh/plugins
+usermod -s /bin/zsh vagrant
 #clone repo
 git clone https://github.com/powerline/fonts.git
 cd fonts
 #start install script
 sudo ./install.sh
 #move to zsh plugin folder
-cd ~/.oh-my-zsh/plugins
+cd /home/vagrant/.oh-my-zsh/plugins
 #clone repo
 git clone https://github.com/zsh-users/zsh-syntax-highlighting
 cd /installers
-cp /dist_zsh/.zshrc ~/.zshrc
+cp /dist_zsh/zshrc /home/vagrant/
+mv /home/vagrant/zshrc /home/vagrant/.zshrc
 echo "ZSH DONE"
 
 #install terminator
@@ -102,14 +102,16 @@ echo "SPARK DONE"
 
 #vivaldi
 echo "INSTALLING VIVALDI"
+dnf -q install at -y
 dnf -q install https://downloads.vivaldi.com/stable/vivaldi-stable-1.13.1008.40-1.x86_64.rpm -y
 echo "VIVALDI DONE"
 
 #emacs
 echo "INSTALLING EMACS"
 dnf -q install emacs -y
-mkdir -p ~/.emacs.d
-cp -r /dist_emacs/* ~/.emacs.d
+mkdir -p /home/vagrant/.emacs.d
+cp  /dist_emacs/init.el /home/vagrant/.emacs.d
+mv /home/vagrant/.emacs.d/init.el /home/vagrant/.emacs.d/.init.el
 echo "EMACS DONE"
 
 #intellij
@@ -118,9 +120,9 @@ wget -q https://download.jetbrains.com/idea/ideaIU-2017.3.3-no-jdk.tar.gz
 echo "INTELLIJ DOES NOT SUPPORT SILENT INSTALLATION, INSTALL TO OPT"
 
 #deploy .ssh keys
-mkdir -p ~/.ssh
-cp -r /dist_ssh/* ~/.ssh
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/*
+mkdir -p /home/vagrant/.ssh
+cp -r /dist_ssh/* /home/vagrant/.ssh
+chmod 700 /home/vagrant/.ssh
+chmod 600 /home/vagrant/.ssh/*
 
 

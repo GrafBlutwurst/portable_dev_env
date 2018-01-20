@@ -10,5 +10,6 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "installers/", "/installers"
   config.vm.synced_folder "dist_emacs/", "/dist_emacs"
   config.vm.synced_folder "dist_ssh/", "/dist_ssh"
+  config.vm.synced_folder "dist_zsh/", "/dist_zsh"
   config.vm.provision :shell, path: "bootstrap.sh"
 end

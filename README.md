@@ -5,9 +5,9 @@ This is meant for a quick Deve environment for Java, Scala with Spark etc.
 Note that this will be doing a lot of Downloads so if you don't have a fast internet connection this will take a while and will look like it's hanging because I can't be bothered to do some sort of progress indicaiton
 
 ## Requirements
-Installed Oracle VBox on Host system
-Oracle VM VirtualBox Extension Pack
-vagrant
+* Installed Oracle VBox on Host system
+* Oracle VM VirtualBox Extension Pack
+* vagrant
 
 ## Includes
 

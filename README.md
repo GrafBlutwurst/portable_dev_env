@@ -58,7 +58,7 @@ vagrant up
 
 You might want to modify
 .zshrc to include path variables to anything you want. Also don't forget to enable modules there if you install any additionally
-.init.el for your emacs needs
+.init.el for your emacs needs. Note current KeyBinds are for a swiss-german keyboards.
 bootstrap.sh to update versions of software as needed and install new ones
 
 I have made the expirience that the VM hangs hard or flickers after provisioning you might need to reboot it. 

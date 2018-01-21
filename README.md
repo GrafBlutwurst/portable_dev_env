@@ -12,37 +12,37 @@ vagrant
 ## Includes
 
 ### OS
-Fedora 27
+* Fedora 27
 
 ### VCS
-Git
+* Git
 
 ### Runtime
-Oracle JDK
-Anaconda Python 3.6
+* Oracle JDK
+* Anaconda Python 3.6
 
 ### Buildtools
-SBT, Scala with ensime plugin installed for SBT
-Gradle
-Maven
+* SBT, Scala with ensime plugin installed for SBT
+* Gradle
+* Maven
 
 ### Shell setup
-ohmyzsh as standard shell
-terminator
+* ohmyzsh as standard shell
+* terminator
 
 ### Browser
-vivaldi
+* vivaldi
 
 ### Cluster computing
-spark
+* spark
 
 ### Dev tools (IDEs etc)
-intellij installer. you'll need to do the install yourself, no silent mode sadly
-ammonite
-emacs
+* intellij installer. you'll need to do the install yourself, no silent mode sadly
+* ammonite
+* emacs
 
 ### Provisioning
-ansible
+* ansible
 
 ## Usage
 Check the vagrantfile and adjust RAM usage.
@@ -51,7 +51,8 @@ Due to license reason I cannot upload the jdk executable. download the version y
 
 1. mkdir installers
 2. download jdk rpm and adjust bootstrap.sh accordingly
-3. vagrant up
+3. put keys into ssh_dist folder for deployment
+4. vagrant up
 
 vagrant up
 

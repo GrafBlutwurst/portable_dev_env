@@ -52,8 +52,19 @@
                     ("melpa-stable" . "http://stable.melpa.org/packages/"))
  package-archive-priorities '(("melpa-stable" . 1)))
 
+(setq package-list '(json-mode markdown-mode auto-complete yaml-mode yasnippet-snippets helm ansible ace-window darkokai-theme ensime))
+
+ 
 (package-initialize)
 
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 (when (not package-archive-contents)
   (package-refresh-contents)

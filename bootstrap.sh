@@ -1,42 +1,42 @@
 cd /installers
-sudo -i
 
 ##TOOLING
 #install git
 echo "INSTALLING GIT"
-dnf -q install git-all -y
+sudo dnf -q install git-all -y
 echo "GIT DONE"
 
 ##RUNTIMES
 #install java
 echo "INSTALLING JDK"
-rpm -Uvh jdk-8u162-linux-x64.rpm
+sudo rpm -Uvh jdk-8u162-linux-x64.rpm
 echo "JDK DONE"
 
 
 echo "CONFIGURING ORACLE JDK AS DEFAULT"
 ## java ##
-alternatives --install /usr/bin/java java /usr/java/latest/jre/bin/java 200000
+sudo alternatives --install /usr/bin/java java /usr/java/latest/jre/bin/java 200000
 ## javaws ##
-alternatives --install /usr/bin/javaws javaws /usr/java/latest/jre/bin/javaws 200000
+sudo alternatives --install /usr/bin/javaws javaws /usr/java/latest/jre/bin/javaws 200000
 ## Java Browser (Mozilla) Plugin 64-bit ##
-alternatives --install /usr/lib64/mozilla/plugins/libjavaplugin.so libjavaplugin.so.x86_64 /usr/java/latest/jre/lib/amd64/libnpjp2.so 200000
+sudo alternatives --install /usr/lib64/mozilla/plugins/libjavaplugin.so libjavaplugin.so.x86_64 /usr/java/latest/jre/lib/amd64/libnpjp2.so 200000
 ## Install javac only if you installed JDK (Java Development Kit) package ##
-alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
-alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
+sudo alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
+sudo alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
 echo "CONFIG DONE"
 
 #python / anaconda
 echo "INSTALLING ANACONDA"
 wget -q https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
-bash Anaconda3-5.0.1-Linux-x86_64.sh -b -p /opt/anaconda
+sudo bash Anaconda3-5.0.1-Linux-x86_64.sh -b -p /opt/anaconda
+sudo chown vagrant:vagrant /opt/anaconda
 echo "ANACONDA DONE"
 
 #BUILDTOOLS
 #SBT/Scala with ensime plugin
 echo "INSTALLING SBT / ENSIME PLUGIN"
 curl -s https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-dnf -q install sbt
+sudo dnf -q install sbt
 mkdir -p /home/vagrant/.sbt/1.0/plugins
 echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.1.0")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
 echo "SBT DONE"
@@ -45,15 +45,18 @@ echo "SBT DONE"
 echo "INSTALLING MAVEN"
 wget -q http://www-eu.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
 tar xzf apache-maven-3.5.2-bin.tar.gz
-mkdir /opt/maven
+sudo mkdir /opt/maven
+sudo chown vagrant:vagrant /opt/maven
 cp -r apache-maven-3.5.2/* /opt/maven
 echo "MAVEN DONE"
 
 #Gradle
 echo "INSTALLING GRADLE"
 wget -q https://services.gradle.org/distributions/gradle-4.4.1-bin.zip
-mkdir /opt/gradle
-unzip -q -d /opt/gradle gradle-4.4.1-bin.zip
+sudo mkdir /opt/gradle
+sudo chown vagrant:vagrant /opt/gradle
+unzip -q gradle-4.4.1-bin.zip
+cp -r gradle-4.4.1/* /opt/gradle
 echo "GRADLE DONE"
 
 #Various Cool shit
@@ -64,10 +67,10 @@ echo "AMMONITE DONE"
 
 #oh-my-zsh
 echo "INSTALLING OH MY ZSH"
-dnf -q install zsh -y
+sudo dnf -q install zsh -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 mkdir -p /home/vagrant/.oh-my-zsh/plugins
-usermod -s /bin/zsh vagrant
+sudo usermod -s /bin/zsh vagrant
 #clone repo
 git clone https://github.com/powerline/fonts.git
 cd fonts
@@ -84,34 +87,34 @@ echo "ZSH DONE"
 
 #install terminator
 echo "INSTALLING TERMINATOR"
-dnf -q install terminator -y 
+sudo dnf -q install terminator -y 
 echo "TERMINATOR DONE"
 
 #install ansible
 echo "INSTALLING ANSIBLE"
-dnf -q install ansible -y
+sudo dnf -q install ansible -y
 echo "ANSIBLE DONE"
 
 #install spark
 echo "INSTALLING SPARK"
 wget -q http://mirror.switch.ch/mirror/apache/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz 
 tar -xzf spark-2.2.1-bin-hadoop2.7.tgz 
-mkdir /opt/spark-2_2_1
+sudo mkdir /opt/spark-2_2_1
+sudo chown vagrant:vagrant /opt/spark-2_2_1
 cp -r spark-2.2.1-bin-hadoop2.7/* /opt/spark-2_2_1
 echo "SPARK DONE"
 
 #vivaldi
 echo "INSTALLING VIVALDI"
-dnf -q install at -y
-dnf -q install https://downloads.vivaldi.com/stable/vivaldi-stable-1.13.1008.40-1.x86_64.rpm -y
+sudo dnf -q install at -y
+sudo dnf -q install https://downloads.vivaldi.com/stable/vivaldi-stable-1.13.1008.40-1.x86_64.rpm -y
 echo "VIVALDI DONE"
 
 #emacs
 echo "INSTALLING EMACS"
-dnf -q install emacs -y
+sudo dnf -q install emacs -y
 mkdir -p /home/vagrant/.emacs.d
 cp  /dist_emacs/init.el /home/vagrant/.emacs.d
-mv /home/vagrant/.emacs.d/init.el /home/vagrant/.emacs.d/.init.el
 echo "EMACS DONE"
 
 #intellij

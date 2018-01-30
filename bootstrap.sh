@@ -59,6 +59,16 @@ unzip -q gradle-4.4.1-bin.zip
 cp -r gradle-4.4.1/* /opt/gradle
 echo "GRADLE DONE"
 
+#LANGUAGES
+#ETA
+echo "INSTALLING ETA"
+wget -q http://88a2a1b21f8e03a6bc8d-8f2e61d843ea88e4f30ab3f81ca0e396.r42.cf5.rackcdn.com/etlas-1.1.0.0/binaries/x86_64-linux/etlas
+sudo mkdir /opt/eta
+sudo chown vagrant:vagrant /opt/eta
+cp etlas /opt/eta
+sudo chmod +x /opt/eta/etlas
+echo "ETA DONE"
+
 #Various Cool shit
 #ammonite
 echo "INSTALLING AMMONITE"
@@ -87,7 +97,7 @@ echo "ZSH DONE"
 
 #install terminator
 echo "INSTALLING TERMINATOR"
-sudo dnf -q install terminator -y 
+sudo dnf -q install terminator -y
 echo "TERMINATOR DONE"
 
 #install ansible
@@ -97,8 +107,8 @@ echo "ANSIBLE DONE"
 
 #install spark
 echo "INSTALLING SPARK"
-wget -q http://mirror.switch.ch/mirror/apache/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz 
-tar -xzf spark-2.2.1-bin-hadoop2.7.tgz 
+wget -q http://mirror.switch.ch/mirror/apache/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz
+tar -xzf spark-2.2.1-bin-hadoop2.7.tgz
 sudo mkdir /opt/spark-2_2_1
 sudo chown vagrant:vagrant /opt/spark-2_2_1
 cp -r spark-2.2.1-bin-hadoop2.7/* /opt/spark-2_2_1
@@ -127,5 +137,3 @@ mkdir -p /home/vagrant/.ssh
 cp -r /dist_ssh/* /home/vagrant/.ssh
 chmod 700 /home/vagrant/.ssh
 chmod 600 /home/vagrant/.ssh/*
-
-

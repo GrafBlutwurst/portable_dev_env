@@ -98,5 +98,6 @@ export PATH=$PATH:/opt/gradle/bin
 export PATH=$PATH:/opt/maven/bin 
 export PATH=$PATH:/opt/spark-2_2_1/bin 
 export PATH=$PATH:/opt/anaconda/bin 
+export PATH=$PATH:/opt/coursier
 
 export JAVA_HOME="/usr/java/latest/"

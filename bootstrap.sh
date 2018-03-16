@@ -38,8 +38,17 @@ echo "INSTALLING SBT / ENSIME PLUGIN"
 curl -s https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 sudo dnf -q install sbt
 mkdir -p /home/vagrant/.sbt/1.0/plugins
-echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.1.0")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
+echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.3.0")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
+echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.3.0")' >> /home/vagrant/.sbt/0.13/plugins/plugins.sbt
 echo "SBT DONE"
+
+#coursier
+echo "INSTALLING SBT / COURSIER PLUGIN"
+echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.1")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
+echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.1")' >> /home/vagrant/.sbt/0.13/plugins/plugins.sbt
+curl -L -o coursier https://git.io/vgvpD && sudo chmod +x coursier
+sudo mkdir /opt/coursier
+sudo cp coursier /opt/coursier
 
 #Maven
 echo "INSTALLING MAVEN"

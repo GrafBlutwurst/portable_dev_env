@@ -5,7 +5,7 @@
 (scroll-bar-mode 0)
 (fset `yes-or-no-p `y-or-n-p)
 (load-theme 'deeper-blue)
-(global-set-key (kbd "M-�") 'next-buffer)
+(global-set-key (kbd "M-ä") 'next-buffer)
 (global-set-key (kbd "M-$") 'previous-buffer)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
@@ -70,6 +70,10 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
 (require 'use-package)
 (require 'helm-config)
 (custom-set-variables
@@ -89,3 +93,28 @@
  (use-package ensime
    :ensure t
    :pin melpa-stable)
+
+
+(defconst
+  scala-mode-pretty-greek-alist
+  '(("lambda" . ?λ)
+    ("alpha" . ?α))
+  "Prettify rules for greek characters related code pieces.")
+
+
+(defcustom
+  mine-scala-prettify-symbols-alist
+  (append
+   scala-mode-pretty-bool-alist
+   scala-mode-pretty-collection-alist
+   scala-mode-pretty-greek-alist
+   scala-mode-pretty-arrows-alist
+   scala-mode-pretty-misc-alist
+   scala-mode-pretty-categories-alist)
+  "All prettify rules to be applied in scala code."
+  :type 'alist
+  :group 'scala)
+
+
+(add-hook 'scala-mode-hook (lambda () (setq prettify-symbols-alist mine-scala-prettify-symbols-alist)(prettify-symbols-mode)))
+

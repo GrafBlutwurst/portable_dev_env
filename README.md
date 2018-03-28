@@ -64,3 +64,7 @@ bootstrap.sh to update versions of software as needed and install new ones
 I have made the expirience that the VM hangs hard or flickers after provisioning you might need to reboot it. 
 
 Note that files like .zshrc and .init.el are without preceeding '.' in the repo. it seems to screw with vagrant foldersyncing at least on windows hosts.
+
+
+PS: If you have issues with gnome being slow
+https://www.virtualbox.org/ticket/17014

@@ -36,7 +36,7 @@ echo "ANACONDA DONE"
 #SBT/Scala with ensime plugin
 echo "INSTALLING SBT / ENSIME PLUGIN"
 curl -s https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-sudo dnf -q install sbt
+sudo dnf -y -q install sbt
 mkdir -p /home/vagrant/.sbt/1.0/plugins
 echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.3.0")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
 echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.3.0")' >> /home/vagrant/.sbt/0.13/plugins/plugins.sbt

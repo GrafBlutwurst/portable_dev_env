@@ -94,14 +94,16 @@
    :ensure t
    :pin melpa-stable)
 
+;;Scalamode customizing
 
+;;Adding lambda and alpha pretty symbols. will extend as needed
 (defconst
   scala-mode-pretty-greek-alist
   '(("lambda" . ?λ)
     ("alpha" . ?α))
   "Prettify rules for greek characters related code pieces.")
 
-
+;;reconfigure scala pretty print list to include custom entries
 (defcustom
   mine-scala-prettify-symbols-alist
   (append
@@ -115,6 +117,11 @@
   :type 'alist
   :group 'scala)
 
-
+;;add pretty print hook
 (add-hook 'scala-mode-hook (lambda () (setq prettify-symbols-alist mine-scala-prettify-symbols-alist)(prettify-symbols-mode)))
 
+;;add highlighint to FIXME: , TODO: , BUG: in scala mode 
+(add-hook 'scala-mode-hook
+               (lambda ()
+                (font-lock-add-keywords nil
+                 '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))

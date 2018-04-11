@@ -43,12 +43,16 @@ echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.3.0")' >> /home/vagrant/.sbt
 echo "SBT DONE"
 
 #coursier
-echo "INSTALLING SBT / COURSIER PLUGIN"
-echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.1")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
-echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.1")' >> /home/vagrant/.sbt/0.13/plugins/plugins.sbt
-curl -L -o coursier https://git.io/vgvpD && sudo chmod +x coursier
-sudo mkdir /opt/coursier
-sudo cp coursier /opt/coursier
+#echo "INSTALLING SBT / COURSIER PLUGIN"
+#echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.1")' >> /home/vagrant/.sbt/1.0/plugins/plugins.sbt
+#echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.1")' >> /home/vagrant/.sbt/0.13/plugins/plugins.sbt
+#curl -L -o coursier https://git.io/vgvpD && sudo chmod +x coursier
+#sudo mkdir /opt/coursier
+#sudo cp coursier /opt/coursier
+
+
+#Mill
+sudo curl -L -o /usr/local/bin/mill https://github.com/lihaoyi/mill/releases/download/0.1.7/0.1.7 && sudo chmod +x /usr/local/bin/mill
 
 #Maven
 echo "INSTALLING MAVEN"
